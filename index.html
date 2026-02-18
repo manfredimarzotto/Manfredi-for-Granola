@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manfredi x Granola | Strategy & Finance — CEO's Office</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --granola-green: #86e36e;
+            --granola-lime: #EBF9A2;
+            --granola-dark-bg: #021a10;
+            --granola-card-bg: #0a2818;
+            --granola-text-primary: #F0F5F2;
+            --granola-text-secondary: #9BB5A8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--granola-text-primary);
+            background: var(--granola-dark-bg);
+            background-image: radial-gradient(circle at 50% -20%, #0a2e1a 0%, #021a10 100%);
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+        section { position: relative; padding: 100px 0; min-height: 60vh; }
+        .page-number { position: absolute; bottom: 40px; right: 40px; font-size: 0.85rem; font-weight: 700; color: var(--granola-text-secondary); opacity: 0.4; }
+        .page-number::before { content: "Page "; }
+
+        /* Header */
+        .header { padding: 40px 0; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .logo { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+        .logo-square { width: 36px; height: 36px; background: var(--granola-green); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.1rem; color: var(--granola-dark-bg); }
+        .logo-text h1 { font-size: 1rem; font-weight: 800; color: var(--granola-text-primary); }
+        .header-badge { font-size: 0.75rem; font-weight: 700; color: var(--granola-green); text-transform: uppercase; }
+
+        /* Hero */
+        .hero { min-height: 85vh; display: flex; flex-direction: column; justify-content: center; }
+        .badge { display: inline-block; padding: 8px 16px; background: rgba(134, 227, 110, 0.08); border: 1px solid rgba(134, 227, 110, 0.3); color: var(--granola-green); border-radius: 24px; font-size: 0.7rem; font-weight: 700; margin-bottom: 32px; text-transform: uppercase; letter-spacing: 1.5px; }
+        .hero h2 { font-size: clamp(2.5rem, 8vw, 4.5rem); font-weight: 800; line-height: 1.05; margin-bottom: 40px; letter-spacing: -2.5px; }
+        .hero h2 span { color: var(--granola-text-secondary); display: block; }
+        .hero-description { font-size: 1.2rem; color: var(--granola-text-secondary); max-width: 720px; line-height: 1.7; }
+        .bridge-line { display: block; margin-top: 24px; color: var(--granola-text-primary); font-weight: 700; font-size: 1.15rem; }
+
+        /* Sections */
+        .section-title { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--granola-green); margin-bottom: 50px; font-weight: 700; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px; margin-bottom: 60px; }
+        .card { background: var(--granola-card-bg); padding: 40px; border-radius: 12px; border: 1px solid rgba(134, 227, 110, 0.1); }
+        .card h3 { color: var(--granola-green); margin-bottom: 28px; font-size: 1.1rem; font-weight: 700; }
+        .card ul { list-style: none; color: var(--granola-text-secondary); font-size: 0.95rem; }
+        .card ul li { margin-bottom: 16px; line-height: 1.6; padding-left: 20px; position: relative; }
+        .card ul li:last-child { margin-bottom: 0; }
+        .card ul li::before { content: ''; position: absolute; left: 0; top: 10px; width: 6px; height: 6px; background: var(--granola-green); border-radius: 50%; }
+
+        .big-statement { font-size: clamp(1.5rem, 4vw, 2.4rem); font-weight: 700; line-height: 1.35; margin: 80px 0; padding: 50px 40px; background: linear-gradient(135deg, rgba(134, 227, 110, 0.05) 0%, transparent 100%); border-left: 4px solid var(--granola-green); border-radius: 8px; }
+
+        /* Execution intro */
+        .execution-intro { max-width: 800px; margin-bottom: 70px; }
+        .execution-intro h2 { font-size: clamp(2rem, 5vw, 3.5rem); letter-spacing: -1.5px; margin-bottom: 24px; line-height: 1.15; font-weight: 800; }
+        .execution-intro p { font-size: 1.15rem; color: var(--granola-text-secondary); line-height: 1.7; }
+        .execution-intro strong { color: var(--granola-green); font-weight: 700; }
+
+        .horizontal-flow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-bottom: 60px; }
+        .flow-box { background: rgba(255, 255, 255, 0.02); padding: 36px; border-radius: 12px; border: 1px solid rgba(134, 227, 110, 0.1); }
+        .box-icon { font-size: 2.5rem; margin-bottom: 20px; display: block; }
+        .flow-box h3 { font-size: 1.3rem; font-weight: 800; color: var(--granola-green); margin-bottom: 12px; }
+        .flow-box h4 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 16px; font-weight: 600; opacity: 0.8; }
+        .flow-box p { font-size: 0.95rem; color: var(--granola-text-secondary); line-height: 1.7; }
+        .p-small { font-size: 0.85rem !important; margin-top: 20px; border-top: 1px solid rgba(134, 227, 110, 0.1); padding-top: 16px; }
+        .p-small strong { color: var(--granola-green); font-weight: 700; }
+
+        .learning-statement { text-align: center; font-size: 1.35rem; font-weight: 500; font-style: italic; line-height: 1.7; max-width: 900px; margin: 0 auto; padding: 50px 40px; background: linear-gradient(135deg, rgba(134, 227, 110, 0.05) 0%, transparent 100%); border-left: 4px solid var(--granola-green); border-right: 4px solid var(--granola-green); border-radius: 8px; }
+
+        /* Series C Readiness */
+        .readiness-intro { max-width: 800px; margin-bottom: 60px; }
+        .readiness-intro h2 { font-size: clamp(2rem, 5vw, 3.5rem); letter-spacing: -1.5px; margin-bottom: 24px; line-height: 1.15; font-weight: 800; }
+        .readiness-intro p { font-size: 1.15rem; color: var(--granola-text-secondary); line-height: 1.7; }
+        .readiness-intro strong { color: var(--granola-green); font-weight: 700; }
+
+        .pillar-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; margin-bottom: 50px; }
+        .pillar-card { background: rgba(255, 255, 255, 0.02); padding: 36px; border-radius: 12px; border: 1px solid rgba(134, 227, 110, 0.1); }
+        .pillar-header { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+        .pillar-number { width: 36px; height: 36px; background: rgba(134, 227, 110, 0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 900; color: var(--granola-green); flex-shrink: 0; }
+        .pillar-card h3 { font-size: 1.1rem; font-weight: 800; color: var(--granola-text-primary); }
+        .pillar-desc { font-size: 0.9rem; color: var(--granola-text-secondary); line-height: 1.6; margin-bottom: 20px; }
+        .pillar-divider { height: 1px; background: rgba(134, 227, 110, 0.1); margin-bottom: 20px; }
+        .metric-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+        .metric-row:last-child { margin-bottom: 0; }
+        .metric-icon { width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .metric-icon svg { width: 16px; height: 16px; stroke: var(--granola-green); fill: none; stroke-width: 2; }
+        .metric-text { font-size: 0.82rem; color: var(--granola-text-secondary); line-height: 1.4; }
+        .metric-text strong { color: var(--granola-text-primary); font-weight: 700; }
+        .metric-text .metric-highlight { color: var(--granola-green); font-weight: 800; }
+
+        .readiness-footer { font-size: 1.15rem; font-weight: 600; font-style: italic; color: var(--granola-text-secondary); padding: 36px 40px; border-left: 4px solid var(--granola-green); background: linear-gradient(135deg, rgba(134, 227, 110, 0.04) 0%, transparent 100%); border-radius: 8px; }
+        .readiness-footer strong { color: var(--granola-text-primary); font-weight: 700; }
+
+        /* Timeline */
+        .focus-page-title { text-align: center; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; margin-bottom: 80px; letter-spacing: -1.5px; }
+        .timeline-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+        .timeline-box { background: rgba(255, 255, 255, 0.02); padding: 40px; border-radius: 12px; border: 1px solid rgba(134, 227, 110, 0.1); }
+        .timeline-number { font-size: 3rem; font-weight: 900; color: var(--granola-green); margin-bottom: 8px; line-height: 1; }
+        .timeline-label { font-size: 0.9rem; font-weight: 700; color: var(--granola-text-secondary); text-transform: uppercase; margin-bottom: 24px; }
+        .timeline-box h3 { font-size: 1.4rem; font-weight: 700; margin-bottom: 16px; }
+        .timeline-box p { font-size: 1rem; color: var(--granola-text-secondary); line-height: 1.7; }
+
+        /* Conclusion */
+        .conclusion-section { padding: 100px 0; display: flex; flex-direction: column; align-items: center; }
+        .conclusion-card {
+            width: 100%;
+            border-radius: 20px;
+            padding: 80px 60px;
+            background: linear-gradient(135deg, #052e18 0%, #0a3d22 30%, #052e18 60%, #0a2818 100%);
+            border: 1px solid rgba(134, 227, 110, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        .conclusion-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at 30% 20%, rgba(134, 227, 110, 0.08) 0%, transparent 50%),
+                        radial-gradient(ellipse at 70% 80%, rgba(134, 227, 110, 0.04) 0%, transparent 40%);
+            pointer-events: none;
+        }
+        .conclusion-card-inner { position: relative; z-index: 1; }
+        .conclusion-eyebrow {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--granola-green);
+            margin-bottom: 40px;
+            opacity: 0.8;
+        }
+        .conclusion-headline {
+            font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+            font-weight: 800;
+            line-height: 1.35;
+            max-width: 700px;
+            margin-bottom: 50px;
+            letter-spacing: -0.5px;
+        }
+        .conclusion-headline span { color: var(--granola-green); }
+        .conclusion-divider {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--granola-green), transparent);
+            margin-bottom: 40px;
+            border-radius: 2px;
+        }
+        .conclusion-pillars {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            margin-bottom: 50px;
+        }
+        .conclusion-pillar {
+            padding: 28px 0;
+            border-top: 1px solid rgba(134, 227, 110, 0.15);
+        }
+        .conclusion-pillar:not(:last-child) {
+            padding-right: 32px;
+            margin-right: 32px;
+            border-right: 1px solid rgba(134, 227, 110, 0.1);
+        }
+        .pillar-icon-row { margin-bottom: 14px; }
+        .pillar-icon-row svg { width: 20px; height: 20px; stroke: var(--granola-green); fill: none; stroke-width: 1.5; }
+        .conclusion-pillar h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--granola-text-primary);
+            margin-bottom: 6px;
+        }
+        .conclusion-pillar p {
+            font-size: 0.85rem;
+            color: var(--granola-text-secondary);
+            line-height: 1.5;
+        }
+        .conclusion-kicker {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--granola-text-primary);
+            padding-top: 12px;
+        }
+        .conclusion-kicker span { color: var(--granola-green); }
+
+        /* CTA */
+        .cta-section { padding: 140px 0 120px; text-align: center; margin-top: 40px; }
+        .cta-heading { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 60px; color: var(--granola-green); }
+        .cta-text { max-width: 700px; margin: 0 auto 80px; line-height: 1.9; }
+        .cta-text p { font-size: 1.25rem; color: var(--granola-text-secondary); margin-bottom: 20px; }
+        .author-name { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 700; margin-bottom: 16px; letter-spacing: -1px; }
+        .author-location { font-size: 1rem; color: var(--granola-green); font-weight: 700; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 12px; }
+        .author-title { font-size: 1.1rem; color: var(--granola-text-secondary); margin-bottom: 60px; }
+        .cta-buttons { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; }
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 18px 48px; font-size: 1rem; font-weight: 700; text-decoration: none; border-radius: 8px; min-width: 220px; }
+        .btn-primary { background: var(--granola-green); color: var(--granola-dark-bg); border: 2px solid var(--granola-green); }
+        .btn-secondary { background: transparent; color: var(--granola-green); border: 2px solid var(--granola-green); }
+
+        footer { padding: 40px; text-align: center; font-size: 0.75rem; color: var(--granola-text-secondary); border-top: 1px solid rgba(134, 227, 110, 0.05); text-transform: uppercase; }
+
+        @media (max-width: 900px) {
+            .container { padding: 0 24px; }
+            .horizontal-flow, .timeline-grid, .pillar-grid, .conclusion-pillars { grid-template-columns: 1fr; gap: 24px; }
+            .conclusion-pillar:not(:last-child) { padding-right: 0; margin-right: 0; border-right: none; }
+            .conclusion-card { padding: 50px 28px; }
+        }
+        @media (max-width: 500px) {
+            .cta-buttons { flex-direction: column; align-items: center; }
+            .btn { width: 100%; max-width: 280px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <a href="#" class="logo">
+                <div class="logo-square">G</div>
+                <div class="logo-text"><h1>Manfredi x Granola</h1></div>
+            </a>
+            <div class="header-badge">Strategy & Finance — CEO's Office</div>
+        </header>
+
+        <!-- PAGE 1 — HERO -->
+        <section class="hero">
+            <span class="badge">Attention: Chris Pedregal, CEO & Co-Founder</span>
+            <h2>From $250M to $1B Needs<br>More Than Great Product.<br><span>It Needs Financial Architecture.</span></h2>
+            <div class="hero-description">
+                <p>Granola has product-market fit, organic virality, and the trust of the entire VC ecosystem. The next chapter — a $100M+ raise at $1B, a team scaling from 30 to 80, and AI economics that don't follow traditional SaaS rules — requires a dedicated strategy and finance function built from the ground up.</p>
+                <span class="bridge-line">This is the case for that role — and why I should build it.</span>
+            </div>
+            <div class="page-number">1</div>
+        </section>
+
+        <!-- PAGE 2 — WHY NOW & WHAT THE ROLE LOOKS LIKE -->
+        <section>
+            <div class="section-title">Granola / Strategy & Finance</div>
+            <div class="grid">
+                <div class="card">
+                    <h3>Why Finance Matters Now</h3>
+                    <ul>
+                        <li>Raising $100M+ at $1B — the fundraise needs a dedicated operator, not just a founder's side project</li>
+                        <li>Team scaling from ~30 to 80 — headcount planning, burn management, and financial governance become critical</li>
+                        <li>AI inference costs scale linearly with usage — unit economics need first-principles modelling, not SaaS templates</li>
+                        <li>Enterprise expansion ($14 to $35/seat) — pricing architecture and sales efficiency must be data-driven</li>
+                        <li>First board cycle at unicorn scale — reporting cadence, metrics frameworks, and investor updates need rigour</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>What This Role Looks Like</h3>
+                    <ul>
+                        <li>Build the finance function from zero — first hire, full ownership, in the CEO's office</li>
+                        <li>Own the Series C process: data room, equity story, investor materials, and process management</li>
+                        <li>Model AI-native unit economics: inference costs, usage patterns, and path to margin improvement</li>
+                        <li>Design pricing and packaging frameworks for the PLG-to-enterprise motion</li>
+                        <li>Create the financial operating rhythm: forecasting, board reporting, and capital allocation</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="page-number">2</div>
+        </section>
+
+        <!-- PAGE 3 — THREE SKILLS THAT MATTER MOST -->
+        <section>
+            <div class="execution-intro">
+                <div class="badge">My Background</div>
+                <h2>Three Skills That Matter Most<br>at Granola Right Now</h2>
+                <p>Software M&A professional with 6 years of execution experience at <strong>William Blair</strong>.</p>
+            </div>
+            <div class="horizontal-flow">
+                <div class="flow-box">
+                    <span class="box-icon">📊</span>
+                    <h3>Fundraising Execution & Equity Story</h3>
+                    <p>I've run M&A processes for category-leading software businesses — building data rooms, crafting equity narratives, positioning metrics for sophisticated investors, and managing multi-party processes under pressure.</p>
+                    <p class="p-small"><strong>At Granola:</strong> I would own the Series C process end-to-end: build the data room, develop the financial model that bridges the $250M-to-$1B narrative, craft the equity story around Granola's unique growth and AI economics, and manage investor conversations so you can stay focused on building the product.</p>
+                </div>
+                <div class="flow-box">
+                    <span class="box-icon">⚡</span>
+                    <h3>AI-Native Financial Modelling</h3>
+                    <p>I've built financial models across vertical software businesses, analysing SaaS KPIs, NRR/GRR, LTV/CAC, and cohort dynamics. I understand what best-in-class metrics look like and how to position them.</p>
+                    <p class="p-small"><strong>At Granola:</strong> Your economics aren't traditional SaaS — inference costs scale with every meeting transcribed, growth compounds weekly not quarterly, and pricing serves both individual power users and enterprise teams. I would build models from first principles that capture this complexity and inform every pricing, investment, and scaling decision.</p>
+                </div>
+                <div class="flow-box">
+                    <span class="box-icon">🔗</span>
+                    <h3>Builder Mentality — Not Just an Analyst</h3>
+                    <p>Banking taught me to execute under pressure, manage parallel workstreams, and translate complex financial narratives across different audiences — from C-suite to investors to cross-functional teams.</p>
+                    <p class="p-small"><strong>At Granola:</strong> At a ~30-person company, the first finance hire can't just model. You need someone who builds systems from scratch, sets up reporting infrastructure, and operates cross-functionally with Product, Engineering, and GTM. I'm here to build the function, not just fill a seat.</p>
+                </div>
+            </div>
+            <div class="learning-statement">6 years of valuing, positioning, and advising software businesses. I'm ready to apply that lens from the inside — building the financial backbone for Granola's next chapter.</div>
+            <div class="page-number">3</div>
+        </section>
+
+        <!-- PAGE 4 — SERIES C PREPAREDNESS -->
+        <section>
+            <div class="readiness-intro">
+                <div class="badge">Deep Dive into Fundraising at $1B</div>
+                <h2>Series C Preparedness</h2>
+                <p>Key areas investors will scrutinise when evaluating Granola at a <strong>$1B+ valuation</strong></p>
+            </div>
+            <div class="pillar-grid">
+
+                <!-- Pillar 1 -->
+                <div class="pillar-card">
+                    <div class="pillar-header">
+                        <div class="pillar-number">1</div>
+                        <h3>Growth Trajectory & User Economics</h3>
+                    </div>
+                    <p class="pillar-desc">At $1B, investors need conviction that organic growth is durable and converting into revenue. Weekly metrics are Granola's superpower — but they need to be packaged into an equity story.</p>
+                    <div class="pillar-divider"></div>
+                    <div class="metric-row">
+                        <div class="metric-icon"><svg viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg></div>
+                        <div class="metric-text"><span class="metric-highlight">10% WoW</span> user growth since May 2024 launch</div>
+                    </div>
+                    <div class="metric-row">
+                        <div class="metric-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
+                        <div class="metric-text"><span class="metric-highlight">70%+</span> weekly retention — exceptional for consumer AI</div>
+                    </div>
+                </div>
+
+                <!-- Pillar 2 -->
+                <div class="pillar-card">
+                    <div class="pillar-header">
+                        <div class="pillar-number">2</div>
+                        <h3>AI Cost Structure & Path to Margins</h3>
+                    </div>
+                    <p class="pillar-desc">"Temporarily unsustainable economics" is a deliberate bet on declining inference costs. Investors will stress-test when and how this flips — the finance function must have the answer.</p>
+                    <div class="pillar-divider"></div>
+                    <div class="metric-row">
+                        <div class="metric-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg></div>
+                        <div class="metric-text">Inference costs scale <span class="metric-highlight">linearly</span> — every meeting is a cost centre and a retention driver</div>
+                    </div>
+                    <div class="metric-row">
+                        <div class="metric-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
+                        <div class="metric-text">Declining AI costs are the bet — need <span class="metric-highlight">scenario modelling</span> and clear timeline</div>
+                    </div>
+                </div>
+
+                <!-- Pillar 3 -->
+                <div class="pillar-card">
+                    <div class="pillar-header">
+                        <div class="pillar-number">3</div>
+                        <h3>Enterprise Expansion & Pricing Architecture</h3>
+                    </div>
+                    <p class="pillar-desc">PLG-to-enterprise is the revenue unlock. Investors want evidence that individual champions convert into team deployments and enterprise contracts at higher ARPU.</p>
+                    <div class="pillar-divider"></div>
+                    <div class="metric-row">
+                        <div class="metric-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></div>
+                        <div class="metric-text"><span class="metric-highlight">$14</span>/seat Business → <span class="metric-highlight">$35</span>/seat Enterprise pricing ladder</div>
+                    </div>
+                    <div class="metric-row">
+                        <div class="metric-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></div>
+                        <div class="metric-text">Privacy-as-upsell: <span class="metric-highlight">opt-out of model training</span> drives enterprise conversion</div>
+                    </div>
+                </div>
+
+                <!-- Pillar 4 -->
+                <div class="pillar-card">
+                    <div class="pillar-header">
+                        <div class="pillar-number">4</div>
+                        <h3>Competitive Moat & Category Leadership</h3>
+                    </div>
+                    <p class="pillar-desc">At $1B, investors are backing a category winner. Granola's moat isn't just product — it's distribution, trust, and compounding switching costs.</p>
+                    <div class="pillar-divider"></div>
+                    <div class="metric-row">
+                        <div class="metric-icon"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></div>
+                        <div class="metric-text">"The tool VCs actually use" — <span class="metric-highlight">organic distribution</span> moat among decision-makers</div>
+                    </div>
+                    <div class="metric-row">
+                        <div class="metric-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg></div>
+                        <div class="metric-text">No-bot architecture + human-AI hybrid = <span class="metric-highlight">compounding switching costs</span></div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="readiness-footer">At Series C and $1B, investors will stress-test unit economics and the enterprise go-to-market motion. A dedicated finance function ensures every one of these pillars tells a <strong>compounding story</strong>.</div>
+            <div class="page-number">4</div>
+        </section>
+
+        <!-- PAGE 5 — 30/60/90 WHAT I'D FOCUS ON -->
+        <section>
+            <h2 class="focus-page-title">Where I'd Focus</h2>
+            <div class="timeline-grid">
+                <div class="timeline-box">
+                    <div class="timeline-number">30</div>
+                    <div class="timeline-label">Days</div>
+                    <h3>Map the Financial Landscape</h3>
+                    <p>Deep dive into Granola's revenue streams, AI cost structure, burn rate, and existing financial infrastructure. Understand the investor base, board dynamics, and how financial insight currently flows to leadership. Identify what's needed to make the Series C process seamless.</p>
+                </div>
+                <div class="timeline-box">
+                    <div class="timeline-number">60</div>
+                    <div class="timeline-label">Days</div>
+                    <h3>Build the Series C Engine</h3>
+                    <p>Develop the core models: AI-native unit economics, cohort analysis by user type and pricing tier, scenario planning for enterprise expansion. Build the data room, craft the equity story, and prepare the investor materials that position Granola at $1B+.</p>
+                </div>
+                <div class="timeline-box">
+                    <div class="timeline-number">90</div>
+                    <div class="timeline-label">Days</div>
+                    <h3>Execute & Establish the Rhythm</h3>
+                    <p>Support Chris through the Series C process — manage investor conversations, handle diligence requests, iterate on materials in real-time. In parallel, establish the ongoing financial operating rhythm: monthly forecasting, board reporting, and the capital allocation framework for scaling from 30 to 80.</p>
+                </div>
+            </div>
+            <div class="page-number">5</div>
+        </section>
+
+        <!-- PAGE 6 — CONCLUSION -->
+        <section class="conclusion-section">
+            <div class="conclusion-card">
+                <div class="conclusion-card-inner">
+                    <div class="conclusion-eyebrow">The Takeaway</div>
+                    <div class="conclusion-headline">At a 30-person rocketship raising at $1B, finance isn't a back-office function.<br>It's the infrastructure that turns product-market fit into a <span>generational company</span>.</div>
+                    <div class="conclusion-divider"></div>
+                    <div class="conclusion-pillars">
+                        <div class="conclusion-pillar">
+                            <div class="pillar-icon-row"><svg viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg></div>
+                            <h4>Series C Execution</h4>
+                            <p>Data room, equity story, and investor process managed with the rigour of a seasoned dealmaker.</p>
+                        </div>
+                        <div class="conclusion-pillar">
+                            <div class="pillar-icon-row"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg></div>
+                            <h4>AI-Native Economics</h4>
+                            <p>Financial models built from first principles for a business where inference costs, not headcount, drive marginal cost.</p>
+                        </div>
+                        <div class="conclusion-pillar">
+                            <div class="pillar-icon-row"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg></div>
+                            <h4>Pricing & Enterprise Scale</h4>
+                            <p>Frameworks that optimise the PLG-to-enterprise motion and maximise revenue per user.</p>
+                        </div>
+                    </div>
+                    <div class="conclusion-kicker">That's not just a finance hire. That's a <span>co-pilot for the CEO's office</span>.</div>
+                </div>
+            </div>
+            <div class="page-number">6</div>
+        </section>
+
+        <!-- PAGE 7 — LET'S TALK -->
+        <section class="cta-section">
+            <div class="cta-text">
+                <p>This memo is not an application for an open role.</p>
+                <p>It's a case for why this function should exist — and why I should build it.</p>
+                <p>If this reflects the kind of thinking you value,</p>
+                <p>I'd welcome the chance to build this together.</p>
+            </div>
+            <div style="margin-bottom: 60px;">
+                <h2 class="author-name">Manfredi Marzotto</h2>
+                <div class="author-location">London</div>
+                <div class="author-title">Software M&A Professional with 6 Years of Execution Experience — Ready to Build</div>
+            </div>
+            <div class="cta-buttons">
+               <a href="mailto:manfredi.marzotto@gmail.com" class="btn btn-primary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                    Email Manfredi
+                </a>
+                <a href="https://www.linkedin.com/in/manfredi-marzotto/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                        <rect x="2" y="9" width="4" height="12"></rect>
+                        <circle cx="4" cy="4" r="2"></circle>
+                    </svg>
+                    LinkedIn
+                </a>
+            </div>
+            <div class="page-number">7</div>
+        </section>
+    </div>
+
+    <footer>February 2026 | Manfredi x Granola</footer>
+</body>
+</html>
