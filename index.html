@@ -40,18 +40,26 @@
         .badge { display: inline-block; padding: 8px 16px; background: rgba(134, 227, 110, 0.08); border: 1px solid rgba(134, 227, 110, 0.3); color: var(--granola-green); border-radius: 24px; font-size: 0.7rem; font-weight: 700; margin-bottom: 32px; text-transform: uppercase; letter-spacing: 1.5px; }
         .hero h2 { font-size: clamp(2.5rem, 8vw, 4.5rem); font-weight: 800; line-height: 1.05; margin-bottom: 40px; letter-spacing: -2.5px; }
         .hero h2 span { color: var(--granola-text-secondary); display: block; }
-        .hero-description { font-size: 1.2rem; color: var(--granola-text-secondary); max-width: 720px; line-height: 1.7; }
-        .bridge-line { display: block; margin-top: 24px; color: var(--granola-text-primary); font-weight: 700; font-size: 1.15rem; }
+        .hero-description { font-size: 1.15rem; color: var(--granola-text-secondary); max-width: 720px; line-height: 1.8; }
+        .hero-points { list-style: none; padding: 0; margin: 0 0 8px 0; }
+        .hero-points li { padding-left: 24px; position: relative; margin-bottom: 12px; }
+        .hero-points li::before { content: ''; position: absolute; left: 0; top: 11px; width: 8px; height: 8px; background: var(--granola-green); border-radius: 50%; }
+        .bridge-line { display: block; margin-top: 28px; color: var(--granola-lime); font-weight: 700; font-size: 1.25rem; font-style: italic; letter-spacing: 0.5px; }
 
         /* Sections */
         .section-title { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--granola-green); margin-bottom: 50px; font-weight: 700; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px; margin-bottom: 60px; }
-        .card { background: var(--granola-card-bg); padding: 40px; border-radius: 12px; border: 1px solid rgba(134, 227, 110, 0.1); }
-        .card h3 { color: var(--granola-green); margin-bottom: 28px; font-size: 1.1rem; font-weight: 700; }
+        .card { background: var(--granola-card-bg); padding: 40px; border-radius: 16px; border: 1px solid rgba(134, 227, 110, 0.12); position: relative; overflow: hidden; }
+        .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--granola-green), var(--granola-lime), transparent); }
+        .card h3 { color: var(--granola-green); margin-bottom: 28px; font-size: 1.15rem; font-weight: 800; display: flex; align-items: center; gap: 10px; }
+        .card h3::before { content: ''; width: 10px; height: 10px; background: var(--granola-green); border-radius: 3px; flex-shrink: 0; }
         .card ul { list-style: none; color: var(--granola-text-secondary); font-size: 0.95rem; }
-        .card ul li { margin-bottom: 16px; line-height: 1.6; padding-left: 20px; position: relative; }
+        .card ul li { margin-bottom: 16px; line-height: 1.6; padding-left: 24px; position: relative; }
         .card ul li:last-child { margin-bottom: 0; }
-        .card ul li::before { content: ''; position: absolute; left: 0; top: 10px; width: 6px; height: 6px; background: var(--granola-green); border-radius: 50%; }
+        .card ul li::before { content: ''; position: absolute; left: 0; top: 10px; width: 6px; height: 6px; background: var(--granola-green); border-radius: 50%; box-shadow: 0 0 8px rgba(134, 227, 110, 0.4); }
+        .card-opportunity { background: linear-gradient(135deg, var(--granola-card-bg) 0%, #0d3320 100%); border: 1px solid rgba(134, 227, 110, 0.2); }
+        .card-opportunity::before { background: linear-gradient(90deg, var(--granola-lime), var(--granola-green), transparent); }
+        .card-opportunity ul li::before { background: var(--granola-lime); box-shadow: 0 0 8px rgba(235, 249, 162, 0.4); }
 
         .big-statement { font-size: clamp(1.5rem, 4vw, 2.4rem); font-weight: 700; line-height: 1.35; margin: 80px 0; padding: 50px 40px; background: linear-gradient(135deg, rgba(134, 227, 110, 0.05) 0%, transparent 100%); border-left: 4px solid var(--granola-green); border-radius: 8px; }
 
@@ -231,8 +239,12 @@
             <span class="badge">Attention: Chris Pedregal, CEO & Co-Founder</span>
             <h2>From $250M to $1B+ Valuation<br>A Great Product in Need of a Proper Financial Architecture.</span></h2>
             <div class="hero-description">
-                <p>Granola has achieved product-market fit, organic virality, and the trust of the entire VC ecosystem. The next chapter requires a dedicated strategy and finance function built from the ground up.</p>
-                <span class="bridge-line">Being <strong>present</strong> is a power move.</span>
+                <ul class="hero-points">
+                    <li>Product-market fit achieved — organic virality and 10% weekly growth</li>
+                    <li>Trust of the entire VC ecosystem — the tool investors actually use</li>
+                    <li>The next chapter requires a dedicated strategy and finance function built from the ground up</li>
+                </ul>
+                <span class="bridge-line">"Being <strong>present</strong> is a power move."</span>
             </div>
             <div class="page-number">1</div>
         </section>
@@ -251,8 +263,8 @@
                         <li>KPIs analysis, board reporting and investor updates need rigour</li>
                     </ul>
                 </div>
-                <div class="card">
-                    <h3>What I Think About The Role</h3>
+                <div class="card card-opportunity">
+                    <h3>What I Think About The Opportunity</h3>
                     <ul>
                         <li>Help to build the finance function from zero</li>
                         <li>Coordinate the Series C fundraising process: equity story positioning, investor materials, financial modelling, and overall process management</li>
@@ -283,7 +295,7 @@
                     <span class="box-icon">⚡</span>
                     <h3>Strategic Thinking & Financial Modelling</h3>
                     <p>I've built financial models across vertical software businesses, analysing SaaS KPIs, NRR/GRR, LTV/CAC, and cohort dynamics. I understand what best-in-class metrics look like and how to position them.</p>
-                    <p class="p-small"><strong>At Granola:</strong> Your economics aren't traditional SaaS, understanding of pricing dynamics and different uses cases between both individual power users and enterprise teams are super relevant. I would build models from first principles that capture this complexity and inform every pricing, investment, and scaling decision.</p>
+                    <p class="p-small"><strong>At Granola:</strong> Your economics aren't traditional SaaS, so an understanding of pricing dynamics and the different use cases between individual power users and enterprise teams is super relevant. I would build models from first principles that capture this complexity and inform every pricing, investment, and scaling decision.</p>
                 </div>
                 <div class="flow-box">
                     <span class="box-icon">🔗</span>
@@ -329,7 +341,7 @@
                         <div class="pillar-number">2</div>
                         <h3>AI Cost Structure & Path to Margins</h3>
                     </div>
-                    <p class="pillar-desc">"Temporarily unsustainable economics" is a deliberate bet on declining inference costs. Investors will stress-test when and how this flips — the finance function must have the answer.</p>
+                    <p class="pillar-desc">Investors will stress-test when and how inference costs will impact the margins.</p>
                     <div class="pillar-divider"></div>
                     <div class="metric-row">
                         <div class="metric-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg></div>
@@ -365,7 +377,7 @@
                         <div class="pillar-number">4</div>
                         <h3>Competitive Moat & Category Leadership</h3>
                     </div>
-                    <p class="pillar-desc">At $1B, investors are backing a category winner. Granola's moat isn't just product — it's distribution, trust, and compounding switching costs.</p>
+                    <p class="pillar-desc">Investors are backing a category winner. Granola's moat is distribution, trust, and compounding switching costs. Investors will look for winning proof points.</p>
                     <div class="pillar-divider"></div>
                     <div class="metric-row">
                         <div class="metric-icon"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></div>
@@ -378,7 +390,7 @@
                 </div>
 
             </div>
-            <div class="readiness-footer">At Series C and $1B, investors will stress-test unit economics and the enterprise go-to-market motion. A dedicated finance function ensures every one of these pillars tells a <strong>compounding story</strong>.</div>
+            <div class="readiness-footer">At Series C, investors will stress-test unit economics, growth vs. profitability (i.e. rule of profile), and the enterprise go-to-market motion. A dedicated finance function ensures every one of these pillars tells a <strong>compelling story</strong>.</div>
             <div class="page-number">4</div>
         </section>
 
@@ -402,7 +414,7 @@
                     <div class="timeline-number">90</div>
                     <div class="timeline-label">Days</div>
                     <h3>Execute & Establish the Rhythm</h3>
-                    <p>Support Chris through the Series C process — manage investor conversations, handle diligence requests, iterate on materials in real-time. In parallel, establish the ongoing financial operating rhythm: monthly forecasting, board reporting, and the capital allocation framework for scaling from 30 to 80.</p>
+                    <p>Support Chris and the rest of the team through the Series C process — manage investor conversations, handle diligence requests, iterate on materials in real-time. I will establish the ongoing financial operating system: monthly forecasting, board reporting, and the capital allocation framework for scaling the team.</p>
                 </div>
             </div>
             <div class="page-number">5</div>
@@ -413,7 +425,7 @@
             <div class="conclusion-card">
                 <div class="conclusion-card-inner">
                     <div class="conclusion-eyebrow">The Takeaway</div>
-                    <div class="conclusion-headline">At a 30-person rocketship raising at $1B, finance isn't a back-office function.<br>It's the infrastructure that turns product-market fit into a <span>generational company</span>.</div>
+                    <div class="conclusion-headline">Finance is the infrastructure that turns product-market fit into a <span>category-leader</span>.</div>
                     <div class="conclusion-divider"></div>
                     <div class="conclusion-pillars">
                         <div class="conclusion-pillar">
@@ -432,7 +444,6 @@
                             <p>Frameworks that optimise the PLG-to-enterprise motion and maximise revenue per user.</p>
                         </div>
                     </div>
-                    <div class="conclusion-kicker">That's not just a finance hire. That's a <span>co-pilot for the CEO's office</span>.</div>
                 </div>
             </div>
             <div class="page-number">6</div>
@@ -442,14 +453,14 @@
         <section class="cta-section">
             <div class="cta-text">
                 <p>This memo is not an application for an open role.</p>
-                <p>It's a case for why this function should exist — and why I should build it.</p>
+                <p>It's a case for why this function should exist and why I can help you build it.</p>
                 <p>If this reflects the kind of thinking you value,</p>
                 <p>I'd welcome the chance to build this together.</p>
             </div>
             <div style="margin-bottom: 60px;">
                 <h2 class="author-name">Manfredi Marzotto</h2>
                 <div class="author-location">London</div>
-                <div class="author-title">Software M&A Professional with 6 Years of Execution Experience — Ready to Build</div>
+                <div class="author-title">Software M&A Professional with 6 Years of Execution Experience</div>
             </div>
             <div class="cta-buttons">
                <a href="mailto:manfredi.marzotto@gmail.com" class="btn btn-primary">
